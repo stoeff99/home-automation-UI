@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: home-backend
+    env_file: .env
+    depends_on:
+      - mosquitto
+      - influxdb
+    ports:
+      - "5000:5000"
+    networks:
+      - ha-net
+
+  frontend:
+    build: ./frontend
+    container_name: home-frontend
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    networks:
+      - ha-net
+
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    networks:
+      - ha-net
+
+  influxdb:
+    image: influxdb:2
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./influxdb/data:/var/lib/influxdb2
+      - ./influxdb/config:/etc/influxdb2
+    env_file: .env
+    networks:
+      - ha-net
+
+networks:
+  ha-net:
+    driver: bridge

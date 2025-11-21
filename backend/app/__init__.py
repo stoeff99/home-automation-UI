@@ -3,13 +3,16 @@ from .config import Config
 from .mqtt_client import init_mqtt
 from .influx_client import init_influx
 from .loxone_client import LoxoneClient
+from .sensors_config import load_sensors_config
 
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    # Initialize integrations
+    # Load sensor metadata (for all sensors)
+    app.sensor_config = load_sensors_config()
+
     init_influx(app)
     init_mqtt(app)
     app.loxone = LoxoneClient(

@@ -1,0 +1,91 @@
+{
+  "pv_total_yield": {
+    "name": "PV Total Yield",
+    "unit": "kWh",
+    "group": "PV"
+  },
+  "pv_daily_yield": {
+    "name": "PV Daily Yield",
+    "unit": "kWh",
+    "group": "PV"
+  },
+  "pv_power": {
+    "name": "PV Power",
+    "unit": "W",
+    "group": "PV"
+  },
+
+  "temp_outside": {
+    "name": "Outside Temperature",
+    "unit": "°C",
+    "group": "Weather"
+  },
+  "humidity_outside": {
+    "name": "Outside Humidity",
+    "unit": "%",
+    "group": "Weather"
+  },
+  "wind_gust_kmh": {
+    "name": "Wind Gust",
+    "unit": "km/h",
+    "group": "Weather"
+  },
+  "solar_radiation": {
+    "name": "Solar Radiation",
+    "unit": "W/m²",
+    "group": "Weather"
+  },
+
+  "venus_pv_power": {
+    "name": "Venus PV Power",
+    "unit": "W",
+    "group": "Venus / PV"
+  },
+  "venus_grid_power": {
+    "name": "Venus Grid Power",
+    "unit": "W",
+    "group": "Venus / Grid"
+  },
+  "venus_ac_in_power": {
+    "name": "Venus AC Input Power",
+    "unit": "W",
+    "group": "Venus / AC"
+  },
+  "venus_dc_power": {
+    "name": "Venus DC Power",
+    "unit": "W",
+    "group": "Venus / DC"
+  },
+  "venus_battery_soc": {
+    "name": "Venus Battery SOC",
+    "unit": "%",
+    "group": "Venus / Battery"
+  },
+  "venus_pv_energy_forward": {
+    "name": "Venus PV Energy Forward",
+    "unit": "kWh",
+    "group": "Venus / PV"
+  },
+
+  "weather_mean_temp": {
+    "name": "Weather Mean Temperature",
+    "unit": "°C",
+    "group": "Weather"
+  },
+  "weather_solar_radiation": {
+    "name": "Weather Solar Radiation",
+    "unit": "W/m²",
+    "group": "Weather"
+  },
+
+  "ecowitt_station": {
+    "name": "Ecowitt Station",
+    "unit": "",
+    "group": "Weather"
+  },
+  "pv_production_s4l": {
+    "name": "PV Production (S4L)",
+    "unit": "kW",
+    "group": "PV"
+  }
+}

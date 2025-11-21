@@ -1,4 +1,4 @@
-version: "3.9"
+#version: "3.9"
 
 services:
   backend:
@@ -6,7 +6,7 @@ services:
     container_name: home-backend
     env_file: .env
     depends_on:
-      - mosquitto
+     # - mosquitto
       - influxdb
     ports:
       - "5000:5000"
@@ -23,17 +23,17 @@ services:
     networks:
       - ha-net
 
-  mosquitto:
-    image: eclipse-mosquitto:2
-    container_name: mosquitto
-    ports:
-      - "1883:1883"
-    volumes:
-      - ./mosquitto/config:/mosquitto/config
-      - ./mosquitto/data:/mosquitto/data
-      - ./mosquitto/log:/mosquitto/log
-    networks:
-      - ha-net
+  #mosquitto:
+  #  image: eclipse-mosquitto:2
+  #  container_name: mosquitto
+  #  ports:
+  #    - "1883:1883"
+  #  volumes:
+  #    - ./mosquitto/config:/mosquitto/config
+  #    - ./mosquitto/data:/mosquitto/data
+  #    - ./mosquitto/log:/mosquitto/log
+  #  networks:
+  #    - ha-net
 
   influxdb:
     image: influxdb:2
@@ -46,6 +46,24 @@ services:
     env_file: .env
     networks:
       - ha-net
+
+  # --- NEW: Vite Development Server ---
+  frontend-dev:
+    image: node:18
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
+    ports:
+      - "5173:5173"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 networks:
   ha-net:
